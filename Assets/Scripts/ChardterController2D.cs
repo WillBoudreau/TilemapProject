@@ -20,6 +20,8 @@ public class ChardterController2D : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        x = movement.x;
+        y = movement.y;
     }
     void FixedUpdate()
     {
@@ -31,31 +33,20 @@ public class ChardterController2D : MonoBehaviour
     {
         //Moves player based off of rigidbody
         rb.MovePosition(rb.position +  movement.normalized * moveSpeed * Time.fixedDeltaTime);
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            x = 1;
-            y = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            x = 0;
-            y = -1;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            x = -1;
-            y = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            x = 0;
-            y = 1;
-        }
     }
     //Plays animation
     public void PlayerAnimaiton()
     {
         _anim.SetFloat("POSX",x);
-        _anim.SetFloat("POSY", y);
+        _anim.SetFloat("POSY",y);
+
+        if(movement != Vector2.zero)
+        {
+            _anim.SetBool("PlayerPOSMove",true);
+        }
+        else
+        {
+            _anim.SetBool("PlayerPOSMove",false);
+        }
     }
 }
