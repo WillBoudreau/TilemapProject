@@ -7,23 +7,28 @@ public class ChardterController2D : MonoBehaviour
 {
     [Header("Player Attributes")]
     [SerializeField] float moveSpeed = 5.0f;
-
+    [SerializeField] float SprintMultiplier = 2.0f;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] private Animator _anim;
     private float x;
     private float y;
-    private float i;
+    private float sprintSpeed;
 
     Vector2 movement;
     Vector2 lastDirect = Vector2.down;
-    void Update()
+    void Start()
     {
         _anim.GetComponent<Animation>();
         rb = GetComponent<Rigidbody2D>();
+        sprintSpeed = moveSpeed * SprintMultiplier;
+    }
+    void Update()
+    {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         x = movement.x;
         y = movement.y;
+        //Stops player's idle at last key press
         if(Input.GetKeyDown(KeyCode.S))
         {
             Debug.Log("S pressed");
@@ -48,7 +53,18 @@ public class ChardterController2D : MonoBehaviour
             _anim.SetFloat("IdleY",0);
             _anim.SetFloat("IdleX",-1);
         }
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Debug.Log("Left Shift pressed");
+            moveSpeed = sprintSpeed;
+        }
+        if(Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            Debug.Log("Left Shift up");
+            moveSpeed = 5.0f;
+        }
     }
+    //Fires both of the Movement and Animation
     void FixedUpdate()
     {
         PlayerMove();

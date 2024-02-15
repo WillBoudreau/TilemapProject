@@ -210,7 +210,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: POSY 0
+  - m_Name: IdleY
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: IdleX
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -283,10 +289,10 @@ AnimatorStateMachine:
     m_Position: {x: 20, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2335179032384957473}
-    m_Position: {x: -260, y: 260, z: 0}
+    m_Position: {x: -330, y: 420, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -9022310344599309494}
-    m_Position: {x: 290, y: 260, z: 0}
+    m_Position: {x: 300, y: 420, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9091007846643360775}
     m_Position: {x: -10, y: 540, z: 0}
@@ -308,8 +314,11 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: PlayerPOSMove
+    m_EventTreshold: 0
   - m_ConditionMode: 3
-    m_ConditionEvent: POSY 0
+    m_ConditionEvent: IdleX
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2335179032384957473}
@@ -367,7 +376,7 @@ AnimatorStateTransition:
     m_ConditionEvent: PlayerPOSMove
     m_EventTreshold: 0
   - m_ConditionMode: 3
-    m_ConditionEvent: POSY 0
+    m_ConditionEvent: IdleY
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4502196618345436555}
@@ -463,8 +472,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: POSX
+  - m_ConditionMode: 4
+    m_ConditionEvent: IdleX
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: PlayerPOSMove
@@ -517,7 +526,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: POSY 0
+    m_ConditionEvent: IdleY
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: PlayerPOSMove
